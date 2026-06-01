@@ -127,7 +127,7 @@ export default function Absensi() {
           </div>
           <div style={{ padding: '12px 20px 8px', background: '#fffbeb', borderBottom: '1px solid #fef3c7' }}>
             <p style={{ fontSize: 12, color: '#92400e' }}>
-              <strong>Regulasi:</strong> Berdasarkan Kepmenaker, lembur maksimal 14 jam per minggu. Karyawan dengan flag <code>is_violation = true</code> perlu segera ditindaklanjuti.
+              <strong>Regulasi:</strong> Berdasarkan Kepmenaker, lembur maksimal 14 jam per minggu. Karyawan dengan <strong>Status Pelanggaran</strong> perlu segera ditindaklanjuti.
             </p>
           </div>
           <div className="table-wrapper">
