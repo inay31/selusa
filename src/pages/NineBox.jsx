@@ -86,9 +86,9 @@ export default function NineBox() {
                         <div key={e.id}
                           className="employee-chip"
                           onClick={() => setSelected(e)}
-                          title={`${e.nama} — Perf: ${e.performance} | Pot: ${e.potential}`}
+                          title={`${e.name} — Perf: ${e.performance} | Pot: ${e.potential}`}
                         >
-                          {e.name || e.nama.split(' ')[0]}
+                          {e.name.split(' ')[0]}
                         </div>
                       ))}
                       {emps.length === 0 && (
@@ -126,10 +126,10 @@ export default function NineBox() {
               <div className="card-body">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                   <div className="avatar avatar-teal" style={{ width: 44, height: 44, fontSize: 15 }}>
-                    {selected.nama.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                    {selected.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                   </div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 15 }}>{selected.nama}</div>
+                    <div style={{ fontWeight: 700, fontSize: 15 }}>{selected.name}</div>
                     <div style={{ fontSize: 12, color: 'var(--gray-500)' }}>{selected.jabatan}</div>
                     <div style={{ fontSize: 11, color: 'var(--gray-400)' }}>{selected.divisi}</div>
                   </div>
@@ -175,7 +175,7 @@ export default function NineBox() {
                     onMouseLeave={e2 => e2.currentTarget.style.background = 'transparent'}
                   >
                     <div>
-                      <div style={{ fontSize: 13, fontWeight: 500 }}>{e.nama}</div>
+                      <div style={{ fontSize: 13, fontWeight: 500 }}>{e.name}</div>
                       <div style={{ fontSize: 11, color: 'var(--gray-400)' }}>{e.divisi}</div>
                     </div>
                     <div style={{ textAlign: 'right' }}>

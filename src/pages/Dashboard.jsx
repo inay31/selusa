@@ -1,4 +1,8 @@
-import { employees, payrollData, computeNetSalary, initialCandidates, kpiDivisi } from '../data/dummyData';
+import { employees, payrollData, computeNetSalary, kpiDivisi, attendanceLogs } from '../data/dummyData';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
+  LineChart, Line, AreaChart, Area
+} from 'recharts';
 
 const fmt = (n) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n);
 
@@ -7,129 +11,169 @@ export default function Dashboard({ onNav }) {
   const totalPayroll = payrollData
     .filter(p => p.bulan === '2026-05')
     .reduce((sum, p) => sum + computeNetSalary(p).net, 0);
-  const kandidatAktif = initialCandidates.filter(c => c.status !== 'Hired').length;
-  const kpiAchieved = kpiDivisi.filter(k => k.realisasi >= k.target).length;
 
-  const recentActivities = [
-    { time: '10 menit lalu', text: 'Pengajuan cuti Budi Santoso menunggu persetujuan', type: 'warning' },
-    { time: '1 jam lalu', text: 'Kandidat Gunawan Halim maju ke tahap Offer', type: 'success' },
-    { time: '2 jam lalu', text: 'Pelanggaran lembur terdeteksi: Andi Pratama (W21)', type: 'danger' },
-    { time: '3 jam lalu', text: 'KPI Divisi Penjualan: Revenue melampaui target', type: 'success' },
-    { time: 'Kemarin', text: 'Survey Engagement Q2 2026 selesai dikompilasi', type: 'info' },
-    { time: 'Kemarin', text: 'Kontrak Rizky Firmansyah akan berakhir dalam 3 bulan', type: 'warning' },
-  ];
+  // 1. Data Karyawan per Divisi (Horizontal Bar Chart)
+  const divisiList = ['Teknologi', 'Marketing', 'Keuangan', 'Penjualan', 'HR', 'Operasional', 'Produk'];
+  const employeeData = divisiList.map(d => ({
+    name: d,
+    jumlah: employees.filter(e => e.divisi === d && e.status === 'aktif').length
+  })).filter(d => d.jumlah > 0);
 
-  const divisiStats = ['Teknologi', 'Marketing', 'Keuangan', 'Penjualan', 'HR', 'Operasional', 'Produk'];
-  const kpiByDivisi = divisiStats.map(d => {
+  // 2. KPI Achievement per Divisi (Vertical Bar Chart)
+  const kpiData = divisiList.map(d => {
     const items = kpiDivisi.filter(k => k.divisi === d);
     const achieved = items.filter(k => k.realisasi >= k.target).length;
-    return { divisi: d, total: items.length, achieved };
+    const notAchieved = items.length - achieved;
+    return { name: d, Tercapai: achieved, 'Belum Tercapai': notAchieved, total: items.length };
   }).filter(d => d.total > 0);
+
+  const kpiAchieved = kpiDivisi.filter(k => k.realisasi >= k.target).length;
+
+  // 3. Attendance Area Chart
+  const attendanceData = [
+    { name: '24 Mei', Hadir: attendanceLogs.filter(a => a.tanggal === '2026-05-24' && a.status === 'hadir').length },
+    { name: '25 Mei', Hadir: 9 }, // Dummy padding
+    { name: '26 Mei', Hadir: 10 }, // Dummy padding
+    { name: '27 Mei', Hadir: attendanceLogs.filter(a => a.tanggal === '2026-05-27' && a.status === 'hadir').length },
+  ];
+
+  // 4. Payroll Trend Line Chart
+  const uniqueMonths = [...new Set(payrollData.map(p => p.bulan))].sort();
+  const payrollTrendData = uniqueMonths.map(bulan => {
+    const total = payrollData.filter(p => p.bulan === bulan).reduce((sum, p) => sum + computeNetSalary(p).net, 0);
+    const date = new Date(bulan + '-01');
+    const name = date.toLocaleDateString('id-ID', { month: 'short', year: 'numeric' });
+    return { name, NetPayroll: total };
+  });
 
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1 className="page-title">Dashboard</h1>
-        <p className="page-subtitle">Selamat datang kembali, Rina. Berikut ringkasan hari ini.</p>
+        <h1 className="page-title">Dashboard Analitik HR</h1>
+        <p className="page-subtitle">Ringkasan performa tim, KPI, dan rekap finansial perusahaan</p>
       </div>
 
-      {/* Stats */}
-      <div className="dashboard-grid">
+      {/* Stats row */}
+      <div className="dashboard-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginBottom: 28 }}>
         <div className="stat-card stat-accent-teal">
           <div className="stat-label">Karyawan Aktif</div>
           <div className="stat-value">{totalKaryawan}</div>
           <div className="stat-sub">dari {employees.length} total karyawan</div>
         </div>
         <div className="stat-card stat-accent-pink">
-          <div className="stat-label">Total Payroll Mei</div>
+          <div className="stat-label">Total Payroll (Mei)</div>
           <div className="stat-value" style={{ fontSize: 20 }}>{fmt(totalPayroll)}</div>
           <div className="stat-sub">10 karyawan diproses</div>
         </div>
         <div className="stat-card stat-accent-teal">
-          <div className="stat-label">Kandidat Aktif</div>
-          <div className="stat-value">{kandidatAktif}</div>
-          <div className="stat-sub">di pipeline rekrutmen</div>
+          <div className="stat-label">Kehadiran (27 Mei)</div>
+          <div className="stat-value">{attendanceData[3].Hadir}</div>
+          <div className="stat-sub">karyawan hadir hari ini</div>
         </div>
         <div className="stat-card stat-accent-pink">
-          <div className="stat-label">KPI Tercapai</div>
+          <div className="stat-label">KPI Keseluruhan</div>
           <div className="stat-value">{kpiAchieved}/{kpiDivisi.length}</div>
-          <div className="stat-sub">target bulan ini</div>
+          <div className="stat-sub">target bulan ini tercapai</div>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 20 }}>
-        {/* KPI Overview */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
+        
+        {/* KPI Chart */}
         <div className="card">
           <div className="card-header">
-            <span className="card-title">KPI per Divisi — Mei 2026</span>
+            <span className="card-title">Pencapaian KPI per Divisi</span>
             <button className="btn btn-ghost btn-sm" onClick={() => onNav('kpi')}>Lihat Detail →</button>
           </div>
-          <div className="card-body">
-            {kpiByDivisi.map(d => {
-              const pct = d.total > 0 ? Math.round((d.achieved / d.total) * 100) : 0;
-              return (
-                <div key={d.divisi} style={{ marginBottom: 14 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                    <span style={{ fontSize: 13, fontWeight: 500 }}>{d.divisi}</span>
-                    <span style={{ fontSize: 12, color: 'var(--gray-500)' }}>{d.achieved}/{d.total} target</span>
-                  </div>
-                  <div className="progress-bar">
-                    <div className="progress-fill" style={{
-                      width: `${pct}%`,
-                      background: pct >= 75 ? 'var(--teal)' : pct >= 50 ? '#f59e0b' : '#ef4444'
-                    }} />
-                  </div>
-                </div>
-              );
-            })}
+          <div className="card-body" style={{ height: 320, padding: '24px 20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={kpiData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#6b7280' }} dy={10} interval={0} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} allowDecimals={false} />
+                <RechartsTooltip cursor={{ fill: '#f9fafb' }} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                <Legend iconType="circle" wrapperStyle={{ fontSize: 12, paddingTop: 10 }} />
+                <Bar dataKey="Tercapai" stackId="a" fill="var(--teal)" radius={[0,0,4,4]} barSize={28} />
+                <Bar dataKey="Belum Tercapai" stackId="a" fill="#e5e7eb" radius={[4,4,0,0]} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Recent Activity */}
+        {/* Employee Comp Chart (Horizontal Bar) */}
         <div className="card">
           <div className="card-header">
-            <span className="card-title">Aktivitas Terbaru</span>
+            <span className="card-title">Sebaran Karyawan per Divisi</span>
+            <button className="btn btn-ghost btn-sm" onClick={() => onNav('talentpool')}>Lihat Database →</button>
           </div>
-          <div style={{ padding: '4px 0' }}>
-            {recentActivities.map((act, i) => (
-              <div key={i} style={{
-                padding: '12px 20px',
-                borderBottom: i < recentActivities.length - 1 ? '1px solid var(--gray-100)' : 'none',
-                display: 'flex', gap: 10
-              }}>
-                <div style={{
-                  width: 7, height: 7, borderRadius: '50%', marginTop: 5, flexShrink: 0,
-                  background: act.type === 'success' ? '#22c55e' : act.type === 'danger' ? '#ef4444' : act.type === 'warning' ? '#f59e0b' : 'var(--teal)'
-                }} />
-                <div>
-                  <div style={{ fontSize: 12.5, color: 'var(--gray-700)', lineHeight: 1.4 }}>{act.text}</div>
-                  <div style={{ fontSize: 11, color: 'var(--gray-400)', marginTop: 3 }}>{act.time}</div>
-                </div>
-              </div>
-            ))}
+          <div className="card-body" style={{ height: 320, padding: '24px 20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={employeeData} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e5e7eb" />
+                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} allowDecimals={false} />
+                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={85} />
+                <RechartsTooltip cursor={{ fill: '#f9fafb' }} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                <Bar dataKey="jumlah" name="Karyawan Aktif" fill="var(--pink)" radius={[0,4,4,0]} barSize={22} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
+
       </div>
 
-      {/* Quick Links */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginTop: 20 }}>
-        {[
-          { key: 'payroll', label: 'Proses Payroll', desc: 'Kelola penggajian karyawan', color: 'var(--teal)' },
-          { key: 'absensi', label: 'Rekap Absensi', desc: 'Cek kehadiran & lembur', color: 'var(--pink)' },
-          { key: 'ats', label: 'Pipeline ATS', desc: 'Kelola kandidat masuk', color: 'var(--teal)' },
-          { key: 'phl', label: 'Deploy PHL', desc: 'Atur penugasan harian', color: 'var(--pink)' },
-        ].map(q => (
-          <div key={q.key} className="card" style={{ cursor: 'pointer', transition: 'box-shadow 0.15s' }}
-            onClick={() => onNav(q.key)}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-          >
-            <div style={{ padding: '16px 18px' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: q.color, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 4 }}>{q.label}</div>
-              <div style={{ fontSize: 12, color: 'var(--gray-500)' }}>{q.desc}</div>
-            </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
+        
+        {/* Attendance Area Chart */}
+        <div className="card">
+          <div className="card-header">
+            <span className="card-title">Tren Kehadiran Harian</span>
+            <button className="btn btn-ghost btn-sm" onClick={() => onNav('absensi')}>Lihat Absensi →</button>
           </div>
-        ))}
+          <div className="card-body" style={{ height: 260, padding: '24px 20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={attendanceData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorHadir" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--teal)" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="var(--teal)" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} allowDecimals={false} />
+                <RechartsTooltip contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                <Area type="monotone" dataKey="Hadir" stroke="var(--teal)" strokeWidth={3} fillOpacity={1} fill="url(#colorHadir)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Payroll Trend Line Chart */}
+        <div className="card">
+          <div className="card-header">
+            <span className="card-title">Tren Pengeluaran Payroll Bersih</span>
+            <button className="btn btn-ghost btn-sm" onClick={() => onNav('payroll')}>Proses Payroll →</button>
+          </div>
+          <div className="card-body" style={{ height: 260, padding: '24px 20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={payrollTrendData} margin={{ top: 10, right: 20, left: 20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} dy={10} />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fontSize: 12, fill: '#6b7280' }} 
+                  tickFormatter={(val) => `Rp${(val/1000000).toFixed(0)}Jt`}
+                />
+                <RechartsTooltip 
+                  contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+                  formatter={(value) => [fmt(value), 'Net Payroll']}
+                />
+                <Line type="monotone" dataKey="NetPayroll" stroke="var(--pink)" strokeWidth={3} dot={{ r: 5, fill: 'var(--pink)', strokeWidth: 0 }} activeDot={{ r: 7 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     </div>
   );

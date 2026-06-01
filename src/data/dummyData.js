@@ -119,6 +119,57 @@ export const payrollData = [
     alpha_potongan: 750000, kasbon: 0, cicilan_koperasi: 0,
     divisi: 'Operasional',
   },
+  // Bulan Jan 2026
+  {
+    id: 'PAY_JAN_001', employee_id: 'EMP001', bulan: '2026-01', nama: 'Andi Pratama',
+    gaji_pokok: 18000000, tunjangan_jabatan: 3000000, tunjangan_transport: 800000,
+    tunjangan_makan: 600000, tunjangan_kesehatan: 500000, tunjangan_komunikasi: 400000,
+    tunjangan_lainnya: 200000, uang_lembur: 1200000, bonus_kinerja: 0,
+    thr: 0, tunjangan_keluarga: 500000, pph21: 1980000, bpjs_tk: 576000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Teknologi',
+  },
+  {
+    id: 'PAY_JAN_002', employee_id: 'EMP005', bulan: '2026-01', nama: 'Fajar Nugroho',
+    gaji_pokok: 20000000, tunjangan_jabatan: 5000000, tunjangan_transport: 1000000,
+    tunjangan_makan: 700000, tunjangan_kesehatan: 600000, tunjangan_komunikasi: 600000,
+    tunjangan_lainnya: 400000, uang_lembur: 800000, bonus_kinerja: 0,
+    thr: 0, tunjangan_keluarga: 1000000, pph21: 4200000, bpjs_tk: 640000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Produk',
+  },
+  // Bulan Feb 2026
+  {
+    id: 'PAY_FEB_001', employee_id: 'EMP001', bulan: '2026-02', nama: 'Andi Pratama',
+    gaji_pokok: 18000000, tunjangan_jabatan: 3000000, tunjangan_transport: 800000,
+    tunjangan_makan: 600000, tunjangan_kesehatan: 500000, tunjangan_komunikasi: 400000,
+    tunjangan_lainnya: 200000, uang_lembur: 500000, bonus_kinerja: 0,
+    thr: 0, tunjangan_keluarga: 500000, pph21: 1980000, bpjs_tk: 576000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Teknologi',
+  },
+  {
+    id: 'PAY_FEB_002', employee_id: 'EMP005', bulan: '2026-02', nama: 'Fajar Nugroho',
+    gaji_pokok: 20000000, tunjangan_jabatan: 5000000, tunjangan_transport: 1000000,
+    tunjangan_makan: 700000, tunjangan_kesehatan: 600000, tunjangan_komunikasi: 600000,
+    tunjangan_lainnya: 400000, uang_lembur: 0, bonus_kinerja: 0,
+    thr: 0, tunjangan_keluarga: 1000000, pph21: 4200000, bpjs_tk: 640000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Produk',
+  },
+  // Bulan Mar 2026
+  {
+    id: 'PAY_MAR_001', employee_id: 'EMP001', bulan: '2026-03', nama: 'Andi Pratama',
+    gaji_pokok: 18000000, tunjangan_jabatan: 3000000, tunjangan_transport: 800000,
+    tunjangan_makan: 600000, tunjangan_kesehatan: 500000, tunjangan_komunikasi: 400000,
+    tunjangan_lainnya: 200000, uang_lembur: 1800000, bonus_kinerja: 1000000,
+    thr: 0, tunjangan_keluarga: 500000, pph21: 1980000, bpjs_tk: 576000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Teknologi',
+  },
+  {
+    id: 'PAY_MAR_002', employee_id: 'EMP005', bulan: '2026-03', nama: 'Fajar Nugroho',
+    gaji_pokok: 20000000, tunjangan_jabatan: 5000000, tunjangan_transport: 1000000,
+    tunjangan_makan: 700000, tunjangan_kesehatan: 600000, tunjangan_komunikasi: 600000,
+    tunjangan_lainnya: 400000, uang_lembur: 1500000, bonus_kinerja: 1500000,
+    thr: 0, tunjangan_keluarga: 1000000, pph21: 4200000, bpjs_tk: 640000, bpjs_kes: 360000,
+    alpha_potongan: 0, kasbon: 0, cicilan_koperasi: 0, divisi: 'Produk',
+  },
   // Bulan April
   {
     id: 'PAY011', employee_id: 'EMP001', bulan: '2026-04', nama: 'Andi Pratama',
