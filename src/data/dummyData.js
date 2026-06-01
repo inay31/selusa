@@ -325,16 +325,16 @@ export const salaryHistory = [
 
 // PHL Data
 export const phlPool = [
-  { id: 'PHL001', nama: 'Agus Rahmadi', keahlian: 'Picker Gudang', reliability_rate: 95, avg_performance: 4.3, status: 'aktif', kontak: '08111234001', kota: 'Jakarta' },
-  { id: 'PHL002', nama: 'Bambang Suharto', keahlian: 'Packer', reliability_rate: 88, avg_performance: 3.9, status: 'aktif', kontak: '08111234002', kota: 'Bekasi' },
-  { id: 'PHL003', nama: 'Cicih Rosita', keahlian: 'Kasir', reliability_rate: 92, avg_performance: 4.1, status: 'aktif', kontak: '08111234003', kota: 'Depok' },
-  { id: 'PHL004', nama: 'Darsono', keahlian: 'Driver', reliability_rate: 78, avg_performance: 3.5, status: 'tidak aktif', kontak: '08111234004', kota: 'Tangerang' },
-  { id: 'PHL005', nama: 'Erna Wulandari', keahlian: 'Customer Service', reliability_rate: 96, avg_performance: 4.6, status: 'aktif', kontak: '08111234005', kota: 'Jakarta' },
-  { id: 'PHL006', nama: 'Firman Nurhadi', keahlian: 'Picker Gudang', reliability_rate: 85, avg_performance: 4.0, status: 'aktif', kontak: '08111234006', kota: 'Bekasi' },
-  { id: 'PHL007', nama: 'Gita Soraya', keahlian: 'Promotor', reliability_rate: 90, avg_performance: 4.2, status: 'aktif', kontak: '08111234007', kota: 'Jakarta' },
-  { id: 'PHL008', nama: 'Harto Suseno', keahlian: 'Driver', reliability_rate: 82, avg_performance: 3.7, status: 'aktif', kontak: '08111234008', kota: 'Bogor' },
-  { id: 'PHL009', nama: 'Indri Fitriani', keahlian: 'Packer', reliability_rate: 93, avg_performance: 4.4, status: 'aktif', kontak: '08111234009', kota: 'Jakarta' },
-  { id: 'PHL010', nama: 'Joko Priyatno', keahlian: 'Security', reliability_rate: 97, avg_performance: 4.5, status: 'aktif', kontak: '08111234010', kota: 'Depok' },
+  { id: 'PHL001', nama: 'Agus Rahmadi', keahlian: 'Picker Gudang', reliability_rate: 95, avg_performance: 8.6, status: 'aktif', kontak: '08111234001', kota: 'Jakarta' },
+  { id: 'PHL002', nama: 'Bambang Suharto', keahlian: 'Packer', reliability_rate: 88, avg_performance: 7.8, status: 'aktif', kontak: '08111234002', kota: 'Bekasi' },
+  { id: 'PHL003', nama: 'Cicih Rosita', keahlian: 'Kasir', reliability_rate: 92, avg_performance: 8.2, status: 'aktif', kontak: '08111234003', kota: 'Depok' },
+  { id: 'PHL004', nama: 'Darsono', keahlian: 'Driver', reliability_rate: 78, avg_performance: 7.0, status: 'tidak aktif', kontak: '08111234004', kota: 'Tangerang' },
+  { id: 'PHL005', nama: 'Erna Wulandari', keahlian: 'Customer Service', reliability_rate: 96, avg_performance: 9.2, status: 'aktif', kontak: '08111234005', kota: 'Jakarta' },
+  { id: 'PHL006', nama: 'Firman Nurhadi', keahlian: 'Picker Gudang', reliability_rate: 85, avg_performance: 8.0, status: 'aktif', kontak: '08111234006', kota: 'Bekasi' },
+  { id: 'PHL007', nama: 'Gita Soraya', keahlian: 'Promotor', reliability_rate: 90, avg_performance: 8.4, status: 'aktif', kontak: '08111234007', kota: 'Jakarta' },
+  { id: 'PHL008', nama: 'Harto Suseno', keahlian: 'Driver', reliability_rate: 82, avg_performance: 7.4, status: 'aktif', kontak: '08111234008', kota: 'Bogor' },
+  { id: 'PHL009', nama: 'Indri Fitriani', keahlian: 'Packer', reliability_rate: 93, avg_performance: 8.8, status: 'aktif', kontak: '08111234009', kota: 'Jakarta' },
+  { id: 'PHL010', nama: 'Joko Priyatno', keahlian: 'Security', reliability_rate: 97, avg_performance: 9.0, status: 'aktif', kontak: '08111234010', kota: 'Depok' },
 ];
 
 export const phlCampaigns = [

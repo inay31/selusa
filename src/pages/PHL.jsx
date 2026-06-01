@@ -111,7 +111,7 @@ export default function PHL() {
                     </td>
                     <td>
                       <span style={{ fontWeight: 600 }}>{p.avg_performance}</span>
-                      <span style={{ fontSize: 11, color: 'var(--gray-400)' }}>/5.0</span>
+                      <span style={{ fontSize: 11, color: 'var(--gray-400)' }}>/10.0</span>
                     </td>
                     <td>
                       <span className={`badge ${p.status === 'aktif' ? 'badge-green' : 'badge-gray'}`}>{p.status}</span>
@@ -257,7 +257,7 @@ export default function PHL() {
                 ['Kota', selectedPHL.kota],
                 ['Kontak', selectedPHL.kontak],
                 ['Reliability Rate', `${selectedPHL.reliability_rate}%`],
-                ['Avg Performance', `${selectedPHL.avg_performance} / 5.0`],
+                ['Avg Performance', `${selectedPHL.avg_performance} / 10.0`],
                 ['Status', selectedPHL.status],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--gray-100)', fontSize: 13 }}>
