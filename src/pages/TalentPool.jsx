@@ -63,7 +63,7 @@ export default function TalentPool() {
         ))}
         <div className="stat-card stat-accent-pink">
           <div className="stat-label">Bulan Ini</div>
-          <div className="stat-value">{pool.filter(p => p.tanggal_masuk >= '2024-04-01').length}</div>
+          <div className="stat-value">{pool.filter(p => p.tanggal_masuk >= '2026-04-01').length}</div>
         </div>
       </div>
 

@@ -36,11 +36,11 @@ export default function Absensi() {
       <div className="stat-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', marginBottom: 20 }}>
         <div className="stat-card stat-accent-teal">
           <div className="stat-label">Hadir Hari Ini</div>
-          <div className="stat-value">{attendanceLogs.filter(a => a.tanggal === '2024-05-27' && a.status === 'hadir').length}</div>
+          <div className="stat-value">{attendanceLogs.filter(a => a.tanggal === '2026-05-27' && a.status === 'hadir').length}</div>
         </div>
         <div className="stat-card">
           <div className="stat-label">Alpha</div>
-          <div className="stat-value" style={{ color: '#dc2626' }}>{attendanceLogs.filter(a => a.tanggal === '2024-05-27' && a.status === 'alpha').length}</div>
+          <div className="stat-value" style={{ color: '#dc2626' }}>{attendanceLogs.filter(a => a.tanggal === '2026-05-27' && a.status === 'alpha').length}</div>
         </div>
         <div className="stat-card stat-accent-pink">
           <div className="stat-label">Cuti Pending</div>
@@ -70,8 +70,8 @@ export default function Absensi() {
       {tab === 'log' && (
         <div className="card">
           <div className="card-header">
-            <span className="card-title">Log Kehadiran — 27 Mei 2024</span>
-            <span style={{ fontSize: 12, color: 'var(--gray-400)' }}>{attendanceLogs.filter(a => a.tanggal === '2024-05-27').length} karyawan</span>
+            <span className="card-title">Log Kehadiran — 27 Mei 2026</span>
+            <span style={{ fontSize: 12, color: 'var(--gray-400)' }}>{attendanceLogs.filter(a => a.tanggal === '2026-05-27').length} karyawan</span>
           </div>
           <div className="table-wrapper">
             <table>
@@ -86,7 +86,7 @@ export default function Absensi() {
                 </tr>
               </thead>
               <tbody>
-                {attendanceLogs.filter(a => a.tanggal === '2024-05-27').map(a => {
+                {attendanceLogs.filter(a => a.tanggal === '2026-05-27').map(a => {
                   let durasi = '-';
                   if (a.jam_masuk && a.jam_keluar) {
                     const [ih, im] = a.jam_masuk.split(':').map(Number);

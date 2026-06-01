@@ -99,7 +99,7 @@ export default function KPI() {
       {tab === 'individu' && (
         <div className="card">
           <div className="card-header">
-            <span className="card-title">KPI Individu — Mei 2024</span>
+            <span className="card-title">KPI Individu — Mei 2026</span>
             <span style={{ fontSize: 12, color: 'var(--gray-400)' }}>Klik "Edit" untuk update progress</span>
           </div>
           <div className="table-wrapper">

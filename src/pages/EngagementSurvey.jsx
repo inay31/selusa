@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { engagementSurveyData, surveyQuarters } from '../data/dummyData';
 
 export default function EngagementSurvey() {
-  const [quarter, setQuarter] = useState('Q2 2024');
+  const [quarter, setQuarter] = useState('Q2 2026');
   const data = engagementSurveyData.find(d => d.quarter === quarter);
 
   const avgScore = data ? (data.hasil.reduce((s, h) => s + h.rata_rata, 0) / data.hasil.length).toFixed(2) : 0;

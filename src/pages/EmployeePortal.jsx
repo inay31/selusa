@@ -238,7 +238,7 @@ function TimesheetTab() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Timesheet — Minggu 21 Mei 2024</div>
+          <div style={{ fontSize: 14, fontWeight: 600 }}>Timesheet — Minggu 21 Mei 2026</div>
           <div style={{ fontSize: 12, color: 'var(--gray-500)', marginTop: 2 }}>Total jam minggu ini: <strong>{totalJam.toFixed(1)} jam</strong>{totalJam > 40 && <span style={{ color: '#dc2626', marginLeft: 6 }}>⚠ Melebihi batas normal</span>}</div>
         </div>
         <button className="btn btn-primary btn-sm" onClick={handleSave}>Simpan Timesheet</button>
@@ -340,7 +340,7 @@ function SurveyTab({ setTab }) {
         <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
         <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--gray-900)', marginBottom: 8 }}>Terima Kasih!</div>
         <div style={{ fontSize: 13, color: 'var(--gray-500)', maxWidth: 360, margin: '0 auto' }}>
-          Respon survey Q2 2024 kamu telah berhasil dikirim. Hasil akan dikompilasi oleh HR.
+          Respon survey Q2 2026 kamu telah berhasil dikirim. Hasil akan dikompilasi oleh HR.
         </div>
         <div style={{ marginTop: 24 }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
@@ -364,7 +364,7 @@ function SurveyTab({ setTab }) {
   return (
     <div>
       <div style={{ marginBottom: 20 }}>
-        <div style={{ fontSize: 14, fontWeight: 600 }}>Engagement Survey — Q2 2024</div>
+        <div style={{ fontSize: 14, fontWeight: 600 }}>Engagement Survey — Q2 2026</div>
         <div style={{ fontSize: 12, color: 'var(--gray-500)', marginTop: 2 }}>
           Berikan penilaian jujur. Respon bersifat anonim dan digunakan untuk meningkatkan lingkungan kerja.
         </div>
@@ -453,14 +453,14 @@ function SurveyTab({ setTab }) {
 // ── Dokumen Tab ──────────────────────────────────────────────
 function DokumenTab({ empId }) {
   const docs = [
-    { id: 1, nama: 'Slip Gaji Mei 2024', kategori: 'Payroll', tanggal: '2024-06-01', size: '84 KB', icon: '📄' },
-    { id: 2, nama: 'Slip Gaji April 2024', kategori: 'Payroll', tanggal: '2024-05-01', size: '81 KB', icon: '📄' },
+    { id: 1, nama: 'Slip Gaji Mei 2026', kategori: 'Payroll', tanggal: '2026-06-01', size: '84 KB', icon: '📄' },
+    { id: 2, nama: 'Slip Gaji April 2026', kategori: 'Payroll', tanggal: '2026-05-01', size: '81 KB', icon: '📄' },
     { id: 3, nama: 'Kontrak Kerja (PKWT)', kategori: 'Kontrak', tanggal: '2023-02-01', size: '210 KB', icon: '📑' },
-    { id: 4, nama: 'Surat Keterangan Kerja', kategori: 'Surat', tanggal: '2024-05-15', size: '56 KB', icon: '📋' },
+    { id: 4, nama: 'Surat Keterangan Kerja', kategori: 'Surat', tanggal: '2026-05-15', size: '56 KB', icon: '📋' },
     { id: 5, nama: 'Kartu BPJS Ketenagakerjaan', kategori: 'Benefit', tanggal: '2023-03-01', size: '120 KB', icon: '🪪' },
     { id: 6, nama: 'Kartu BPJS Kesehatan', kategori: 'Benefit', tanggal: '2023-03-01', size: '118 KB', icon: '🪪' },
-    { id: 7, nama: 'Sertifikat Pelatihan Internal Q1', kategori: 'Sertifikat', tanggal: '2024-03-28', size: '340 KB', icon: '🏅' },
-    { id: 8, nama: 'Penilaian Kinerja 2023', kategori: 'KPI', tanggal: '2024-01-15', size: '95 KB', icon: '📊' },
+    { id: 7, nama: 'Sertifikat Pelatihan Internal Q1', kategori: 'Sertifikat', tanggal: '2026-03-28', size: '340 KB', icon: '🏅' },
+    { id: 8, nama: 'Penilaian Kinerja 2023', kategori: 'KPI', tanggal: '2026-01-15', size: '95 KB', icon: '📊' },
   ];
 
   const categories = [...new Set(docs.map(d => d.kategori))];
@@ -601,7 +601,7 @@ export default function EmployeePortal({ user, onLogout }) {
             {tab === 'beranda' && `Selamat datang, ${user.nama.split(' ')[0]} 👋`}
             {tab === 'cuti' && 'Pengajuan Cuti'}
             {tab === 'timesheet' && 'Timesheet Mingguan'}
-            {tab === 'survey' && 'Engagement Survey Q2 2024'}
+            {tab === 'survey' && 'Engagement Survey Q2 2026'}
             {tab === 'dokumen' && 'Dokumen Saya'}
           </h1>
           <p style={{ fontSize: 13, color: 'var(--gray-500)', marginTop: 4 }}>

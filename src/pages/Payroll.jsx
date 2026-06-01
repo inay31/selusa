@@ -7,7 +7,7 @@ const fmtRp = (n) => 'Rp ' + fmt(n);
 const bulanList = [...new Set(payrollData.map(p => p.bulan))].sort().reverse();
 
 export default function Payroll() {
-  const [bulan, setBulan] = useState('2024-05');
+  const [bulan, setBulan] = useState('2026-05');
   const [selected, setSelected] = useState(null);
 
   const filtered = payrollData.filter(p => p.bulan === bulan);

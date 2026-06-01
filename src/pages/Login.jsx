@@ -307,7 +307,7 @@ export default function Login({ onLogin }) {
           {/* Footer */}
           <div style={{ marginTop: 32, paddingTop: 20, borderTop: '1px solid var(--gray-100)', textAlign: 'center' }}>
             <span style={{ fontSize: 12, color: 'var(--gray-400)' }}>
-              © 2024 Selusa Hub · Versi Demo
+              © 2026 Selusa Hub · Versi Demo
             </span>
           </div>
         </div>

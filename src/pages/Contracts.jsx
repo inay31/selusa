@@ -21,7 +21,7 @@ export default function Contracts() {
   const expiringContracts = contractsData.filter(c => {
     if (!c.tanggal_berakhir || c.status !== 'aktif') return false;
     const end = new Date(c.tanggal_berakhir);
-    const now = new Date('2024-06-01');
+    const now = new Date('2026-06-01');
     const diffDays = (end - now) / (1000 * 60 * 60 * 24);
     return diffDays <= 90 && diffDays >= 0;
   });

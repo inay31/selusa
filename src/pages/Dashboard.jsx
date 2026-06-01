@@ -5,7 +5,7 @@ const fmt = (n) => new Intl.NumberFormat('id-ID', { style: 'currency', currency:
 export default function Dashboard({ onNav }) {
   const totalKaryawan = employees.filter(e => e.status === 'aktif').length;
   const totalPayroll = payrollData
-    .filter(p => p.bulan === '2024-05')
+    .filter(p => p.bulan === '2026-05')
     .reduce((sum, p) => sum + computeNetSalary(p).net, 0);
   const kandidatAktif = initialCandidates.filter(c => c.status !== 'Hired').length;
   const kpiAchieved = kpiDivisi.filter(k => k.realisasi >= k.target).length;
@@ -15,7 +15,7 @@ export default function Dashboard({ onNav }) {
     { time: '1 jam lalu', text: 'Kandidat Gunawan Halim maju ke tahap Offer', type: 'success' },
     { time: '2 jam lalu', text: 'Pelanggaran lembur terdeteksi: Andi Pratama (W21)', type: 'danger' },
     { time: '3 jam lalu', text: 'KPI Divisi Penjualan: Revenue melampaui target', type: 'success' },
-    { time: 'Kemarin', text: 'Survey Engagement Q2 2024 selesai dikompilasi', type: 'info' },
+    { time: 'Kemarin', text: 'Survey Engagement Q2 2026 selesai dikompilasi', type: 'info' },
     { time: 'Kemarin', text: 'Kontrak Rizky Firmansyah akan berakhir dalam 3 bulan', type: 'warning' },
   ];
 
@@ -61,7 +61,7 @@ export default function Dashboard({ onNav }) {
         {/* KPI Overview */}
         <div className="card">
           <div className="card-header">
-            <span className="card-title">KPI per Divisi — Mei 2024</span>
+            <span className="card-title">KPI per Divisi — Mei 2026</span>
             <button className="btn btn-ghost btn-sm" onClick={() => onNav('kpi')}>Lihat Detail →</button>
           </div>
           <div className="card-body">
