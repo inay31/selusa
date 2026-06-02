@@ -60,54 +60,6 @@ function RoleCard({ role, selected, onClick }) {
   );
 }
 
-// ─── Credential Hint ────────────────────────────────────────
-function CredentialHint({ role }) {
-  const [open, setOpen] = useState(false);
-  const isHR = role === 'hr';
-  return (
-    <div style={{ marginTop: 10 }}>
-      <button
-        onClick={() => setOpen(o => !o)}
-        style={{ fontSize: 12, color: 'var(--teal)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}
-      >
-        {open ? '▲' : '▼'} Lihat demo credentials
-      </button>
-      {open && (
-        <div style={{ marginTop: 8, background: 'var(--gray-50)', borderRadius: 8, padding: 12, border: '1px solid var(--gray-200)' }}>
-          {isHR ? (
-            <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--gray-400)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>HR Accounts</div>
-              {HR_CREDENTIALS.map(c => (
-                <div key={c.email} style={{ fontSize: 12, color: 'var(--gray-600)', marginBottom: 4 }}>
-                  <code style={{ background: 'var(--gray-200)', padding: '1px 5px', borderRadius: 3, fontSize: 11 }}>{c.email}</code>
-                  {' · '}
-                  <code style={{ background: 'var(--gray-200)', padding: '1px 5px', borderRadius: 3, fontSize: 11 }}>{c.password}</code>
-                  <span style={{ color: 'var(--gray-400)', fontSize: 11, marginLeft: 6 }}>— {c.nama}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--gray-400)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
-                Employee Accounts <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>— password semua: <code style={{ background: 'var(--gray-200)', padding: '1px 5px', borderRadius: 3 }}>Karyawan@123</code></span>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 12px' }}>
-                {EMPLOYEE_CREDENTIALS.slice(0, 6).map(c => (
-                  <div key={c.id} style={{ fontSize: 12, color: 'var(--gray-600)' }}>
-                    <code style={{ background: 'var(--gray-200)', padding: '1px 5px', borderRadius: 3, fontSize: 11 }}>{c.id}</code>
-                    <span style={{ color: 'var(--gray-400)', fontSize: 11, marginLeft: 6 }}>{c.nama.split(' ')[0]}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--gray-400)', marginTop: 6 }}>+ {EMPLOYEE_CREDENTIALS.length - 6} akun lainnya (EMP007–EMP010)</div>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
 // ─── Main Login Page ────────────────────────────────────────
 export default function Login({ onLogin }) {
   const [role, setRole] = useState('hr');
@@ -128,7 +80,7 @@ export default function Login({ onLogin }) {
         if (match) {
           onLogin({ role: 'hr', nama: match.nama, jabatan: match.jabatan });
         } else {
-          setError('Email atau password salah. Coba cek demo credentials di bawah.');
+          setError('Email atau password salah.');
         }
       } else {
         const match = EMPLOYEE_CREDENTIALS.find(c => c.id === identifier.trim().toUpperCase() && c.password === password);
@@ -300,9 +252,6 @@ export default function Login({ onLogin }) {
               {loading ? 'Memverifikasi...' : `Masuk sebagai ${role === 'hr' ? 'HR' : 'Karyawan'}`}
             </button>
           </form>
-
-          {/* Demo credentials hint */}
-          <CredentialHint role={role} />
 
           {/* Footer */}
           <div style={{ marginTop: 32, paddingTop: 20, borderTop: '1px solid var(--gray-100)', textAlign: 'center' }}>

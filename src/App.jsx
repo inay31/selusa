@@ -12,9 +12,11 @@ import KPI from './pages/KPI';
 import EngagementSurvey from './pages/EngagementSurvey';
 import Contracts from './pages/Contracts';
 import PHL from './pages/PHL';
+import EmployeeDatabase from './pages/EmployeeDatabase';
 
 const pageTitles = {
   dashboard: 'Dashboard',
+  employeedb: 'Database Karyawan',
   payroll: 'Payroll',
   absensi: 'Absensi',
   ats: 'ATS Pipeline',
@@ -53,17 +55,18 @@ export default function App() {
   // ── Role: HR → tampilkan full HR system ──
   const renderPage = () => {
     switch (activePage) {
-      case 'dashboard': return <Dashboard onNav={setActivePage} />;
-      case 'payroll':   return <Payroll />;
-      case 'absensi':   return <Absensi />;
-      case 'ats':       return <ATS />;
-      case 'talentpool':return <TalentPool />;
-      case 'ninebox':   return <NineBox />;
-      case 'kpi':       return <KPI />;
-      case 'survey':    return <EngagementSurvey />;
-      case 'contracts': return <Contracts />;
-      case 'phl':       return <PHL />;
-      default:          return <Dashboard onNav={setActivePage} />;
+      case 'dashboard':  return <Dashboard onNav={setActivePage} />;
+      case 'employeedb': return <EmployeeDatabase />;
+      case 'payroll':    return <Payroll />;
+      case 'absensi':    return <Absensi />;
+      case 'ats':        return <ATS />;
+      case 'talentpool': return <TalentPool />;
+      case 'ninebox':    return <NineBox />;
+      case 'kpi':        return <KPI />;
+      case 'survey':     return <EngagementSurvey />;
+      case 'contracts':  return <Contracts />;
+      case 'phl':        return <PHL />;
+      default:           return <Dashboard onNav={setActivePage} />;
     }
   };
 

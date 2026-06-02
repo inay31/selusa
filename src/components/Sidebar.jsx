@@ -2,6 +2,7 @@ export default function Sidebar({ active, onNav, user }) {
   const navItems = [
     { key: 'dashboard', label: 'Dashboard', icon: '▦' },
     { type: 'section', label: 'Karyawan' },
+    { key: 'employeedb', label: 'Database Karyawan', icon: '◫' },
     { key: 'payroll', label: 'Payroll', icon: '◈' },
     { key: 'absensi', label: 'Absensi', icon: '◷' },
     { key: 'contracts', label: 'Kontrak & Gaji', icon: '◻' },
